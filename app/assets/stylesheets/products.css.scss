@@ -1,0 +1,45 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bourbon";
+@import "neat";
+
+body{
+  background-color: #EEE;
+}
+
+header {
+  @include background-image(linear-gradient(hsla(0, 100%, 100%, 0.25) 0%, hsla(0, 100%, 100%, 0.08) 50%, transparent 50%),
+                            linear-gradient(black, darken(#151514, 10%)));
+  text-align: center;
+  position:fixed;
+  width:100%;
+  color:white;
+}
+
+section {
+  background-color: white;
+  @include outer-container;
+
+  @include border-top-radius(5px);
+  @include border-bottom-radius(5px);
+  @include border-left-radius(5px);
+  @include border-right-radius(5px);
+
+  @include box-shadow(0 0 1px 2px hsla(0, 0%, 0%, 0.08));
+
+  margin-bottom:2em;
+  padding:0.45em;
+
+}
+
+div.left-nav {
+  @include span-columns(2);
+}
+
+div.main {
+  @include span-columns(10);
+
+}
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Redbox</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <header>
+    <p>Stuff</p>
+  </header>
+
+  <section>
+    <div class='left-nav'>
+      Blah Blah Blah
+    </div>
+
+    <div class='main'>
+      <%= yield %>
+    </div>
+  </section>
+
+</body>
+</html>
