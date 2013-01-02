@@ -5,6 +5,14 @@
 @import "bourbon";
 @import "neat";
 
+//this is to push down the page from the title header
+body{padding-top:100px; }
+header{top:0;}
+
+
+
+
+
 body{
   background-color: #EEE;
 }
@@ -16,7 +24,15 @@ header {
   position:fixed;
   width:100%;
   color:white;
+
 }
+
+.left-nav ul {
+  list-style:none;
+}
+
+
+header ul li a {color:white;}
 
 section {
   background-color: white;

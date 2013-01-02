@@ -5,13 +5,23 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Product.delete_all
-Category.delete_all
+Product.destroy_all
+Category.destroy_all
+State.destroy_all
 
 25.times do
-  Category.create(title: Faker::Lorem.word, active: true)
+  State.create(name: Faker::Address.state)
 end
 
+25.times do
+  Category.create(name: Faker::Address.city, active: true)
+end
+category_count = Category.all.size
+state_count = State.all.size
+
 100.times do
-  Product.create(title: Faker::Lorem.sentence, description: Faker::Lorem.sentences.join(' ') ).categories << Category.all.sample( rand(25) )
+  product = Product.create(title: Faker::Name.first_name, description: Faker::Lorem.sentences.join(' ') )
+  product.categories << Category.all.sample( rand(category_count) )
+  product.states << State.all.sample( rand(state_count) )
+  puts "Product: #{product.title} created. Categories: #{product.categories.map(&:name).join(' ')}. States: #{product.states.map(&:name).join(' ')} \n"
 end

@@ -1,4 +1,7 @@
 Redbox::Application.routes.draw do
+  resources :states
+
+
   resources :categories
 
 

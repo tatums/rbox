@@ -1,7 +1,7 @@
-class Category < ActiveRecord::Base
-  attr_accessible :active, :name
-  has_many :product_categories
-  has_many :products, :through => :product_categories
+class State < ActiveRecord::Base
+  attr_accessible :name
+  has_many :product_states
+  has_many :products, :through => :product_states
 
   validates :name, :uniqueness => true
 
@@ -13,5 +13,4 @@ class Category < ActiveRecord::Base
 
   include Tire::Model::Search
   include Tire::Model::Callbacks
-
 end

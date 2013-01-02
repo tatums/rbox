@@ -9,12 +9,25 @@
 <body>
 
   <header>
-    <p>Stuff</p>
+    <ul class="inline-list">
+      <li><a href="#">Link 1</a></li>
+      <li><a href="#">Link 2</a></li>
+      <li><a href="#">Link 3</a></li>
+      <li><a href="#">Link 4</a></li>
+      <li><a href="#">Link 5</a></li>
+    </ul>
   </header>
 
   <section>
     <div class='left-nav'>
-      Blah Blah Blah
+      <ul>
+        <% State.all.each do |state| %>
+          <li>
+            <%= link_to state.name, state %>
+            <%= "(#{state.products.size})" %>
+          </li>
+        <% end %>
+      </ul>
     </div>
 
     <div class='main'>
