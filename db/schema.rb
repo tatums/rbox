@@ -11,14 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130101215327) do
+ActiveRecord::Schema.define(:version => 20130106140944) do
 
   create_table "categories", :force => true do |t|
-    t.string   "name"
+    t.string   "title"
     t.boolean  "active"
+    t.string   "slug"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "ancestry"
   end
+
+  add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
+  add_index "categories", ["slug"], :name => "index_categories_on_slug", :unique => true
 
   create_table "product_categories", :force => true do |t|
     t.integer  "category_id"
@@ -40,14 +45,20 @@ ActiveRecord::Schema.define(:version => 20130101215327) do
   create_table "products", :force => true do |t|
     t.string   "title"
     t.text     "description"
+    t.string   "slug"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "products", ["slug"], :name => "index_products_on_slug", :unique => true
+
   create_table "states", :force => true do |t|
-    t.string   "name"
+    t.string   "title"
+    t.string   "slug"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "states", ["slug"], :name => "index_states_on_slug", :unique => true
 
 end

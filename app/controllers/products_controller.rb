@@ -1,13 +1,17 @@
 class ProductsController < ApplicationController
 
   def index
+    params[:search] = {'query' => '*'}unless params[:search]
 
-    if params[:query].present?
-      @products = Product.tire_search(params)
-      #@products = Product.search(params[:query], load: true)
-    else
-      @products = Product.all
-    end
+    @products = Product.tire_search(params[:search])
+
+
+    # if params[:search].present?
+    #   @products = Product.tire_search(params[:search])
+    #   #@products = Product.search(params[:query], load: true)
+    # else
+    #   @products = Product.all
+    # end
 
     respond_to do |format|
       format.html
@@ -26,6 +30,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    #@product_categories = @product.category_ids
 
     respond_to do |format|
       format.html
@@ -74,5 +79,8 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+
 
 end

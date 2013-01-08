@@ -1,0 +1,38 @@
+<%= form_for :search, :url => products_path, method: :get do |form| %>
+  <p>
+
+    <%# form.text_field :query, value: params[:search] ? params[:search][:query] : ""  %>
+    <%= text_field_tag 'search[query]',  params[:search] && params[:search][:query], placeholder: 'Search' %>
+
+    <fieldset>
+      <legend>Include</legend>
+      <%= select_tag 'search[categories][]',
+        options_for_select( Category.all.map(&:slug),
+        params[:search] && params[:search][:categories] && params[:search][:categories] ),
+        multiple:true, class: 'chosen', 'data-placeholder' => "Categories.." %>
+
+      <%= select_tag 'search[states][]',
+        options_for_select( State.all.map(&:slug),
+        params[:search] && params[:search][:states] && params[:search][:states] ),
+        multiple:true, class: 'chosen', 'data-placeholder' => "States.." %>
+    </fieldset>
+
+    <fieldset>
+      <legend>Exclude</legend>
+      <%= select_tag 'search[not_categories][]',
+          options_for_select( Category.all.map(&:slug),
+          params[:search] && params[:search][:not_categories] && params[:search][:not_categories] ),
+          multiple:true, class: 'chosen', 'data-placeholder' => "NOT Categories.." %>
+
+      <%= select_tag 'search[not_states][]',
+          options_for_select( State.all.map(&:slug),
+          params[:search] && params[:search][:not_states] && params[:search][:not_states] ),
+          multiple:true, class: 'chosen', 'data-placeholder' => "NOT States.." %>
+    </fieldset>
+
+    <%= form.submit "Search" %>
+  </p>
+<% end %>
+<script type="text/javascript">
+  $('.chosen').chosen();
+</script>

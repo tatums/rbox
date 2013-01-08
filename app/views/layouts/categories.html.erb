@@ -12,7 +12,6 @@
     <%= render :partial => 'layouts/shared/navigation' %>
   </header>
 
-
   <section>
     <div class='left-nav'>
       <% if content_for? :left_navigation %>
@@ -23,11 +22,9 @@
     </div>
 
     <div class='main'>
-      <%= render :partial => 'layouts/shared/search' %>
       <%= yield %>
     </div>
   </section>
-
 
 </body>
 </html>

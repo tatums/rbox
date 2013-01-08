@@ -1,10 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= @state.title %></h1>
+
+
+<h4>Products</h4>
+<ul>
+  <%= render :partial => 'shared/product', :collection => @state.products %>
+</ul>
+
 <p>
-  <b>Name:</b>
-  <%= @state.name %>
+  <%= link_to 'Edit', edit_state_path(@state) %></td>
+  <%= link_to 'Destroy', @state, method: :delete, data: { confirm: 'Are you sure?' } %>
 </p>
-
-
-<%= link_to 'Edit', edit_state_path(@state) %> |
-<%= link_to 'Back', states_path %>

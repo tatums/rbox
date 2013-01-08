@@ -1,33 +1,46 @@
-
-
-<%= form_tag products_path, method: :get do %>
-  <p>
-    <%= text_field_tag :query, params[:query] %>
-    <%= submit_tag "Search", name: nil %>
-  </p>
-<% end %>
-
-
 <table>
   <tr>
     <th>Title</th>
+    <th>Categories</th>
+    <th>States</th>
     <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
-<% @products.each do |product| %>
-  <tr>
-    <td><%= product.title %></td>
-    <td><%= product.description %></td>
-    <td><%= link_to 'Show', product %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= link_to product.title, product %></td>
+      <td><%= product.category_titles %></td>
+      <td><%= product.state_titles %></td>
+      <td><%= link_to product.description, product %></td>
+    </tr>
+  <% end %>
 </table>
 
 <br />
 
 <%= link_to 'New Product', new_product_path %>
+
+
+<% content_for :left_navigation do %>
+
+  <% unless @products.class == Array %>
+    <h3>Facets</h3>
+
+    <h4>Categories</h4>
+
+    <% if @products.facets["categories"]["terms"] %>
+    <ul>
+      <%= render partial: 'shared/facet', collection: @products.facets["categories"]["terms"], as: 'term', locals: {klass: Category }%>
+    </ul>
+    <% end %>
+
+    <h4>States</h4>
+    <% if @products.facets["states"]["terms"] %>
+    <ul>
+      <%= render partial: 'shared/facet', collection: @products.facets["states"]["terms"], as: 'term', locals: {klass: State }%>
+    </ul>
+    <% end %>
+
+  <% end %>
+
+<% end %>

@@ -7,11 +7,17 @@
 
 //this is to push down the page from the title header
 body{padding-top:100px; }
-header{top:0;}
+header{
+  top:0;
+  z-index:2;
+}
 
 
 
 
+.chzn-container-multi .chzn-choices .search-field input{
+  height:2em;
+}
 
 body{
   background-color: #EEE;

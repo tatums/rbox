@@ -15,10 +15,33 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
+
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
+
+  <fieldset>
+    <legend>Categories</legend>
+    <% Category.all.each do |category| %>
+      <div class="field">
+        <%= check_box_tag 'product[category_ids][]', category.id, @product.categories.include?(category) %>
+        <%= category.title %>
+      </div>
+    <% end %>
+  </fieldset>
+
+  <fieldset>
+    <legend>States</legend>
+    <% State.all.each do |state| %>
+      <div class="field">
+        <%= check_box_tag 'product[state_ids][]', state.id, @product.states.include?(state) %>
+        <%= state.title %>
+      </div>
+    <% end %>
+  </fieldset>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,15 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @category.title %>
-</p>
 
-<p>
-  <b>Active:</b>
-  <%= @category.active %>
-</p>
+<ul class="breadcrumbs">
+  <%= render partial: 'shared/category', collection: (@category.ancestors + [@category]) %>
+</ul>
 
+
+<h1><%= @category.title %></h1>
+
+
+<h3>Sub Categories</h3>
+  <% @category.children.each do |category| %>
+    <tr>
+      <td><%= link_to category.title, category %> </td>
+    </tr>
+  <% end %>
+
+
+<h4>Products</h4>
+<ul>
+  <%= render :partial => 'shared/product', :collection => @category.products %>
+</ul>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<%= link_to 'Destroy', @category, method: :delete, data: { confirm: 'Are you sure?' } %>

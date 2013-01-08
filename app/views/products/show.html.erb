@@ -1,15 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @product.title %>
-</p>
-
+<h1><%= @product.title %></h1>
 <p>
   <b>Description:</b>
   <%= @product.description %>
 </p>
 
 
+<ul class='inline-list'>
+  <%= render partial: 'shared/item', collection: @product.states, as: :item %>
+</ul>
+
+<ul class='inline-list'>
+  <%= render partial: 'shared/item', collection: @product.categories, as: :item %>
+</ul>
+
+
 <%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to 'Destroy', @product, method: :delete, data: { confirm: 'Are you sure?' } %>
