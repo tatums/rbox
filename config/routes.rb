@@ -1,4 +1,4 @@
-Redbox::Application.routes.draw do
+Rbox::Application.routes.draw do
   resources :states
 
 

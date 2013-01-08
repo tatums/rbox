@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Redbox::Application.load_tasks
+Rbox::Application.load_tasks

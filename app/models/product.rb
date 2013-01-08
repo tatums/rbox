@@ -62,33 +62,6 @@ class Product < ActiveRecord::Base
     end
   end
 
-
-
-
-
-  def self.tsearch(q=nil)
-    tire.search(load: true) do
-      query { string q } if q
-
-      #filter :terms, 'states.title' => ['indiana']
-      #filter :terms, 'categories.title' => ['walgreens']
-
-      # facet 'global-tags', :global => true do
-      #   terms :slug
-      # end
-
-      facet :categories do
-        terms 'categories.slug'
-      end
-
-      facet :states do
-        terms 'states.slug'
-        filter :terms, 'states.slug' => [ 'indiana' ]
-      end
-
-    end
-  end
-
   def category_titles
     categories.map(&:title).join(', ')
   end
@@ -98,27 +71,5 @@ class Product < ActiveRecord::Base
   end
 
   ##rake environment tire:import CLASS=Category FORCE=true --trace
-
-
-  #def self.tire_search(params)
-    # tire.search(load: true) do
-    #   query { string params[:query]} if params[:query].present?
-    # end
-    # facet "categories" do
-    #   terms 'categories.title'
-    # end
-  #end
-
-  # def self.tire_search(params)
-  #   tire.search do
-  #     query { string params} if params.present?
-
-  #     facet "categories" do
-  #       terms 'categories.title'
-  #     end
-  #   end
-  # end
-
-
 
 end
