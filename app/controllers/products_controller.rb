@@ -1,17 +1,21 @@
 class ProductsController < ApplicationController
 
+  # def find
+  #   @product = Product.find_by_backstage_product_id(params[:backstage_product_id])
+  #   respond_to do |format|
+  #     format.html
+  #     format.json { render json: @product }
+  #   end
+  # end
+
+
+
+
   def index
-    params[:search] = {'query' => '*'}unless params[:search]
+    @products = Product.order("created_at DESC").to_a
 
-    @products = Product.tire_search(params[:search])
-
-
-    # if params[:search].present?
-    #   @products = Product.tire_search(params[:search])
-    #   #@products = Product.search(params[:query], load: true)
-    # else
-    #   @products = Product.all
-    # end
+    #params[:search] = {'query' => '*'}unless params[:search]
+    #@products = Product.tire_search(params[:search])
 
     respond_to do |format|
       format.html
@@ -30,7 +34,6 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    #@product_categories = @product.category_ids
 
     respond_to do |format|
       format.html
@@ -47,7 +50,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        #format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render json: @product, status: :created, location: @product }
       else
         format.html { render action: "new" }

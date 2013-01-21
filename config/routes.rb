@@ -1,13 +1,16 @@
 Rbox::Application.routes.draw do
-  resources :states
+  require 'api'
 
+  resources :states
 
   resources :categories
 
-
   root :to => 'products#index'
+
+  match 'products/:backstage_product_id/find' => 'products#find', :as => :find
   resources :products
 
+  mount Rbox::API => "/"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

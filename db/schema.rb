@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106140944) do
+ActiveRecord::Schema.define(:version => 20130108141149) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -46,8 +46,9 @@ ActiveRecord::Schema.define(:version => 20130106140944) do
     t.string   "title"
     t.text     "description"
     t.string   "slug"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "backstage_product_id"
   end
 
   add_index "products", ["slug"], :name => "index_products_on_slug", :unique => true

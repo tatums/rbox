@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :description, :title, :slug, :category_ids, :state_ids
+  attr_accessible :description, :title, :slug, :backstage_product_id, :category_ids, :state_ids
 
   has_many :product_categories, :dependent => :destroy
   has_many :categories, :through => :product_categories

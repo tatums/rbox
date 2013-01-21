@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.9'
+gem 'rails', '3.2.11'
 gem 'pg'
 gem 'neat'
 gem 'tire'
@@ -8,6 +8,7 @@ gem 'kaminari'
 gem "friendly_id"
 gem 'ancestry'
 gem 'jquery-rails'
+gem 'grape'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
